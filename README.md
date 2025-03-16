@@ -27,7 +27,7 @@ In this lab, we will dig into as well as experiment on the Domain Name System (D
 <img src="https://i.imgur.com/2Wl0nRt.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-First, start the VMs and RDP into Client1. Open PowerShell as an administrator and attempt to ping "mainframe." This will fail because "mainframe" is not found in the local cache, the hosts file, or the DNS server.
+First, power on the virtual machines and establish a Remote Desktop Protocol (RDP) connection to Client1. Launch PowerShell with administrator privileges and try to ping "mainframe." The ping will fail since "mainframe" is not present in the local cache, the hosts file, or the DNS server.
 </p>
 <br />
 
@@ -51,7 +51,7 @@ After that, run the command nslookup mainframe. Once again, you'll find that no 
 <img src="https://i.imgur.com/pwQioSl.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Next, we'll create a DNS A-record on DC-1 for "mainframe" and point it to DC-1's private IP address. On the DC-1 VM, search for Administrative Tools and open DNS. Navigate to DC-1 > Forward Lookup Zones > mydomain.com, then right-click inside mydomain.com and select New Host (A or AAAA). In the Name field, enter mainframe, and in the IP Address field, input DC-1's private IP address. Save the record.
+Next, we’ll set up a DNS A-record for "mainframe" on DC-1, directing it to DC-1’s private IP address. On the DC-1 VM, locate and open DNS from Administrative Tools. Go to DC-1 > Forward Lookup Zones > mydomain.com, then right-click within mydomain.com and choose New Host (A or AAAA). In the Name field, type mainframe, and in the IP Address field, enter DC-1’s private IP address. Finally, save the record.
 </p>
 <br />
 
@@ -59,7 +59,7 @@ Next, we'll create a DNS A-record on DC-1 for "mainframe" and point it to DC-1's
 <img src="https://i.imgur.com/zMrBLqR.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Now, return to Client1 and try pinging "mainframe" in PowerShell again. This time, the ping will succeed because we created a DNS A-record on DC-1 pointing to its private IP address.
+Now, go back to Client1 and attempt to ping "mainframe" in PowerShell once more. This time, the ping should be successful because we added a DNS A-record on DC-1 that maps to its private IP address.
 </p>
 <br />
 
@@ -100,7 +100,7 @@ Now, attempt to ping "mainframe" one more time from Client1. You'll notice that 
 <img src="https://i.imgur.com/1Idq19o.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Next, go back to the DC-1 VM and create a CNAME record that points the host "explore" to "www.google.com". To do this, navigate to the DNS Manager, right-click mydomain.com under Forward Lookup Zones, and select New Alias (CNAME). In the Alias name field, enter explore, and in the Fully Qualified Domain Name (FQDN) field, enter www.google.com. Save the record.
+Next, return to the DC-1 VM and create a CNAME record to direct the host "explore" to "www.google.com." To do this, open the DNS Manager, right-click on mydomain.com under Forward Lookup Zones, and choose New Alias (CNAME). In the Alias name field, type explore, and in the Fully Qualified Domain Name (FQDN) field, enter www.google.com. Finally, save the record.
 </p>
 <br />
 
