@@ -5,7 +5,7 @@
 </p>
 
 <h1>Building Intuition for DNS</h1>
-In this lab, we will explore and experiment with the Domain Name System (DNS) to gain a deeper understanding of how it operates and supports network communication. Through practical exercises, we aim to enhance our knowledge of DNS functionality and its critical role in translating domain names into IP addresses.<br />
+In this lab, we will dig into as well as experiment on the Domain Name System (DNS) for the development of a greater comprehension of its operation in its role within the facilitation of network communication. Through many hands-on activities, we will improve our comprehension of DNS functionality. We will also improve our comprehension of its important task of converting domain names into IP addresses.<br />
 
 <h2>Environments and Technologies Used</h2>
 
