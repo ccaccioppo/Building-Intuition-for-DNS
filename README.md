@@ -5,7 +5,7 @@
 </p>
 
 <h1>Building Intuition for DNS</h1>
-In this lab, we will dig into as well as experiment on the Domain Name System (DNS) for the development of a greater comprehension of its operation in its role within the facilitation of network communication. Through many hands-on activities, we will improve our comprehension of DNS functionality. We will also improve our comprehension of its important task of converting domain names into IP addresses.<br />
+In this lab, we'll explore and experiment with the Domain Name System (DNS) to better understand how it works and its role in enabling network communication. Through hands-on activities, we'll deepen our knowledge of how DNS functions and its crucial job of translating domain names into IP addresses.<br />
 
 <h2>Environments and Technologies Used</h2>
 
@@ -27,7 +27,7 @@ In this lab, we will dig into as well as experiment on the Domain Name System (D
 <img src="https://i.imgur.com/2Wl0nRt.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-First, power on the virtual machines and establish a Remote Desktop Protocol (RDP) connection to Client1. Launch PowerShell with administrator privileges and try to ping "mainframe." The ping will fail since "mainframe" is not present in the local cache, the hosts file, or the DNS server.
+Start by powering on the virtual machines and connecting to Client1 using Remote Desktop Protocol (RDP). Once connected, open PowerShell as an administrator and try pinging "mainframe." The ping attempt will fail because the system can't resolve "mainframe"—it's not stored in the local cache, the hosts file, or the DNS server, which is responsible for translating domain names into IP addresses.
 </p>
 <br />
 
@@ -43,7 +43,7 @@ Next, run the command ipconfig /displaydns. You'll notice there is no entry for 
 <img src="https://i.imgur.com/XbNuQE3.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-After that, run the command nslookup mainframe. Once again, you'll find that no results are returned.
+Next, run the command nslookup mainframe. Just like before, you won’t get any results.
 </p>
 <br />
 
@@ -51,7 +51,7 @@ After that, run the command nslookup mainframe. Once again, you'll find that no 
 <img src="https://i.imgur.com/pwQioSl.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Next, we’ll set up a DNS A-record for "mainframe" on DC-1, directing it to DC-1’s private IP address. On the DC-1 VM, locate and open DNS from Administrative Tools. Go to DC-1 > Forward Lookup Zones > mydomain.com, then right-click within mydomain.com and choose New Host (A or AAAA). In the Name field, type mainframe, and in the IP Address field, enter DC-1’s private IP address. Finally, save the record.
+Now, let's create a DNS A-record for "mainframe" on DC-1, pointing it to DC-1’s private IP address. On the DC-1 VM, open DNS Manager from Administrative Tools. Navigate to DC-1 > Forward Lookup Zones > mydomain.com, then right-click inside mydomain.com and select New Host (A or AAAA). In the Name field, enter mainframe, and in the IP Address field, type DC-1’s private IP address. Once done, save the record.
 </p>
 <br />
 
@@ -59,7 +59,7 @@ Next, we’ll set up a DNS A-record for "mainframe" on DC-1, directing it to DC-
 <img src="https://i.imgur.com/zMrBLqR.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Now, go back to Client1 and attempt to ping "mainframe" in PowerShell once more. This time, the ping should be successful because we added a DNS A-record on DC-1 that maps to its private IP address.
+Go back to Client1 and try pinging "mainframe" in PowerShell again. This time, it should work because we added a DNS A-record on DC-1 that points to its private IP address.
 </p>
 <br />
 
@@ -68,7 +68,7 @@ Now, go back to Client1 and attempt to ping "mainframe" in PowerShell once more.
 <img src="https://i.imgur.com/xWA0TfZ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Now, go back to DC-1 and update the DNS A-record for "mainframe" to point to the IP address 8.8.8.8. After making this change, return to the Client1 VM and ping "mainframe" again. You'll notice it still pings the old IP address.
+Go back to DC-1 and update the DNS A-record for "mainframe" to 8.8.8.8. Once you've made the change, switch over to Client1 and try pinging "mainframe" again. You’ll see that it’s still using the old IP address.
 </p>
 <br />
 
@@ -76,7 +76,7 @@ Now, go back to DC-1 and update the DNS A-record for "mainframe" to point to the
 <img src="https://i.imgur.com/8nSHNtq.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Use the command ipconfig /displaydns on Client1 and locate the entry for "mainframe." You'll see that the A-record still points to 10.0.0.4, providing a more detailed view of the cached DNS entry.
+On Client1, run the command ipconfig /displaydns and look for the entry labeled "mainframe." You'll notice that the A-record is still set to 10.0.0.4, showing a detailed view of the cached DNS information.
 </p>
 <br />
 
@@ -84,7 +84,7 @@ Use the command ipconfig /displaydns on Client1 and locate the entry for "mainfr
 <img src="https://i.imgur.com/K7BQDEu.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-To ensure that the new IP address from the updated A-record is reflected, use the command ipconfig /flushdns to clear the DNS cache. After this, the new IP address will be shown when you use ipconfig /displaydns.
+To make sure the updated A-record reflects the new IP address, run ipconfig /flushdns to clear the DNS cache. Once that’s done, you can check if the change took effect by using ipconfig /displaydns.
 </p>
 <br />
 
@@ -92,7 +92,7 @@ To ensure that the new IP address from the updated A-record is reflected, use th
 <img src="https://i.imgur.com/BGKH5xK.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Now, attempt to ping "mainframe" one more time from Client1. You'll notice that it successfully pings the new IP address 8.8.8.8, reflecting the updated A-record.
+Now, try pinging "mainframe" again from Client1. This time, you’ll see that it successfully pings the new IP address, 8.8.8.8, which confirms that the updated A-record is in effect.
 </p>
 <br />
 
@@ -100,7 +100,7 @@ Now, attempt to ping "mainframe" one more time from Client1. You'll notice that 
 <img src="https://i.imgur.com/1Idq19o.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Next, return to the DC-1 VM and create a CNAME record to direct the host "explore" to "www.google.com." To do this, open the DNS Manager, right-click on mydomain.com under Forward Lookup Zones, and choose New Alias (CNAME). In the Alias name field, type explore, and in the Fully Qualified Domain Name (FQDN) field, enter www.google.com. Finally, save the record.
+Next, go back to the DC-1 VM and set up a CNAME record to point the host "explore" to "www.google.com." To do this, open the DNS Manager, right-click on mydomain.com under Forward Lookup Zones, and select New Alias (CNAME). In the Alias name field, type explore, and in the Fully Qualified Domain Name (FQDN) field, enter www.google.com. Once you’ve filled in the details, save the record to complete the process.
 </p>
 <br />
 
@@ -108,7 +108,7 @@ Next, return to the DC-1 VM and create a CNAME record to direct the host "explor
 <img src="https://i.imgur.com/SI2VH6B.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Go back to the Client1 VM and ping "explore." You should observe that the ping is successfully resolved to www.google.com, as the CNAME record you created points "explore" to that address.
+Go back to the Client1 VM and try pinging "explore." You’ll notice that the ping successfully resolves to www.google.com, thanks to the CNAME record you set up earlier, which directs "explore" to that specific address.
 </p>
 <br />
 
@@ -116,6 +116,6 @@ Go back to the Client1 VM and ping "explore." You should observe that the ping i
 <img src="https://i.imgur.com/ys286eQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lastly, run the command nslookup explore on Client1. The results should show that "explore" resolves to www.google.com, indicating the CNAME record is working as expected.
+Finally, run the nslookup explore command on Client1. The output should confirm that "explore" resolves to www.google.com, which means the CNAME record is functioning correctly.
 </p>
 <br />
